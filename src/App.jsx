@@ -55,7 +55,6 @@ const App = () => {
     userStats[String(part)].answers[String(question)] = {}
     userStats[String(part)].answers[String(question)]["value"] = "correct"
     userStats[String(part)].answers[String(question)]["time"] = (endTime - startTime) / 1000
-    console.log(userStats[String(part)].answers[String(question)].value, userStats[String(part)].answers[String(question)].time)
 
     if (question % 8 === 0) {
       setInterfer('question')
@@ -68,7 +67,6 @@ const App = () => {
     userStats[String(part)].answers[String(question)] = {}
     userStats[String(part)].answers[String(question)]["value"] = "wrong"
     userStats[String(part)].answers[String(question)]["time"] = (endTime - startTime) / 1000
-    console.log(userStats[String(part)].answers[String(question)].value, userStats[String(part)].answers[String(question)].time)
 
     if (question % 8 === 0) {
       setInterfer('question')
@@ -81,7 +79,6 @@ const App = () => {
     userStats[String(part)].answers['interfer ' + String(interferQuestion)] = {}
     userStats[String(part)].answers['interfer ' + String(interferQuestion)]["value"] = "correct"
     userStats[String(part)].answers[String('interfer ' + interferQuestion)]["time"] = (endTime - startTime) / 1000
-    console.log(userStats[String(part)].answers['interfer ' + String(interferQuestion)].value, userStats[String(part)].answers[String(interferQuestion)].time)
     
     setInterfer('prompt')
     setInterferQuestion(interferQuestion + 1)
@@ -92,7 +89,6 @@ const App = () => {
     userStats[String(part)].answers[String(interferQuestion)] = {}
     userStats[String(part)].answers[String(interferQuestion)]["value"] = "correct"
     userStats[String(part)].answers[String(interferQuestion)]["time"] = (endTime - startTime) / 1000
-    console.log(userStats[String(part)].answers[String(interferQuestion)].value, userStats[String(part)].answers[String(interferQuestion)].time)
 
     setInterfer('prompt')
     setInterferQuestion(interferQuestion + 1)
