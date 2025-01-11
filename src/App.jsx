@@ -52,9 +52,7 @@ const App = () => {
 
   const handleCorrectColor = () => {
     endTime = performance.now()
-    userStats[String(part)].answers[String(question)] = {}
-    userStats[String(part)].answers[String(question)]["value"] = "correct"
-    userStats[String(part)].answers[String(question)]["time"] = (endTime - startTime) / 1000
+    userStats[String(part)].answers.push({"question": String(question), "value": "correct", "time": (endTime - startTime) / 1000})
 
     if (question % 8 === 0) {
       setInterfer('question')
@@ -64,9 +62,7 @@ const App = () => {
 
   const handleWrongColor = () => {
     endTime = performance.now()
-    userStats[String(part)].answers[String(question)] = {}
-    userStats[String(part)].answers[String(question)]["value"] = "wrong"
-    userStats[String(part)].answers[String(question)]["time"] = (endTime - startTime) / 1000
+    userStats[String(part)].answers.push({"question": String(question), "value": "wrong", "time": (endTime - startTime) / 1000})
 
     if (question % 8 === 0) {
       setInterfer('question')
@@ -76,9 +72,7 @@ const App = () => {
 
   const handleCorrectInter = () => {
     endTime = performance.now()
-    userStats[String(part)].answers['interfer ' + String(interferQuestion)] = {}
-    userStats[String(part)].answers['interfer ' + String(interferQuestion)]["value"] = "correct"
-    userStats[String(part)].answers[String('interfer ' + interferQuestion)]["time"] = (endTime - startTime) / 1000
+    userStats[String(part)].answers.push({"question": 'I ' + String(interferQuestion), "value": "correct", "time": (endTime - startTime) / 1000})
     
     setInterfer('prompt')
     setInterferQuestion(interferQuestion + 1)
@@ -86,9 +80,7 @@ const App = () => {
 
   const handleWrongInter = () => {
     endTime = performance.now()
-    userStats[String(part)].answers[String(interferQuestion)] = {}
-    userStats[String(part)].answers[String(interferQuestion)]["value"] = "correct"
-    userStats[String(part)].answers[String(interferQuestion)]["time"] = (endTime - startTime) / 1000
+    userStats[String(part)].answers.push({"question": 'I ' + String(interferQuestion), "value": "wrong", "time": (endTime - startTime) / 1000})
 
     setInterfer('prompt')
     setInterferQuestion(interferQuestion + 1)
@@ -170,8 +162,11 @@ const App = () => {
       }
     }
   } else if (part === 4) {
+    console.log(userStats)
+    console.log(userStats.length)
     return (
       <div>
+        <h1>DO NOT REFRESH THE PAGE</h1>
         {Object.keys(userStats).map((part, i) => {
           return (
             <table key={i}>
@@ -187,9 +182,10 @@ const App = () => {
               </thead>
               <tbody>
                 {userStats[part].answers.map((question, j) => {
+                  console.log(question, j)
                   return (
                     <tr key={j}>
-                      <th scope='row'>#{j}</th>
+                      <th scope='row'>#{question.question}</th>
                       <td>{question.value}</td>
                       <td>{question.time}</td>
                     </tr>
